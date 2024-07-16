@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+*{
+    font-family: 'TheJamsil5Bold';
+}
+
 #chat-container {
     width: 400px;
     height: 500px;
@@ -58,8 +68,45 @@ main{
 
 .chatleft{
     grid-column: 1; /* 첫 번째 요소를 첫 번째 열에 배치 */
+    background-color: pink
 }
 
 .chatlight{
     grid-column: 2; /* 두 번째 요소를 첫 번째 열에 배치 */
+    background-color: #fff;
+}
+
+h1{
+    margin: 6%
+}
+
+h2 {
+    display: flex; /* h2를 flex container로 만듭니다. */
+    align-items: center; /* 이미지와 텍스트를 수직 가운데 정렬합니다. */
+    font-size: 100%;
+  }
+  
+  h2 img {
+    margin-right: 20px; /* 이미지와 텍스트 사이 간격을 조절합니다. */
+  }
+
+.a{
+    display: flex; /* Flexbox 활성화 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.a{
+    padding: 3%;
+}
+
+.b{
+    padding: 3%;
+}
+
+.c{
+    padding: 3%;
+}
+
+.d{
+    padding: 3%;
 }
