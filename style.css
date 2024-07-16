@@ -91,22 +91,25 @@ h2 {
   }
 
 .a{
+    padding: 3%;
     display: flex; /* Flexbox 활성화 */
     align-items: center; /* 수직 가운데 정렬 */
 }
 
-.a{
-    padding: 3%;
-}
-
 .b{
     padding: 3%;
+    display: flex; /* Flexbox 활성화 */
+    align-items: center; /* 수직 가운데 정렬 */
 }
 
 .c{
     padding: 3%;
+    display: flex; /* Flexbox 활성화 */
+    align-items: center; /* 수직 가운데 정렬 */
 }
 
 .d{
     padding: 3%;
+    display: flex; /* Flexbox 활성화 */
+    align-items: center; /* 수직 가운데 정렬 */
 }

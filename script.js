@@ -24,15 +24,24 @@ function handleSendMessage() {
 // 자동 응답 처리 함수
 function handleAutoReply(messageText) {
     if (messageText.toLowerCase() === '안녕') {
-        setTimeout(() => sendMessage('안녕! 무엇을 도와줄까?', 'other-message'), 500);
+        setTimeout(() => sendMessage('안녕하세요! 무엇을 도와드릴까요?', 'other-message'), 500);
     } else if (messageText.includes('내가 보내준 파일로 문제 만들어줘')) {
         setTimeout(() => {
-            sendMessage('알겠어! 나에게 파일을 보내줘!', 'other-message');
+            sendMessage('알겠습니다! 저에게 파일을 보내주세요!', 'other-message');
             uploadButton.style.display = 'block';
         }, 500);
+        
+    } else if (messageText.toLowerCase() === '공부 잘하는 방법 알려줘') {
+        setTimeout(() => sendMessage('공부를 잘하는 방법은 다음과 같습니다', 'other-message'), 500);
+        setTimeout(() => sendMessage('최선을 다해서 공부에 임하는 것입니다.', 'other-message'), 500);
+    } else if (messageText.toLowerCase() === '덕영고등학교 시험 일정 알려줘') {
+        setTimeout(() => sendMessage('24년도 2학기 덕영고 시험일정은 다음과 같습니다.', 'other-message'), 500);
+        setTimeout(() => sendMessage('1차 지필은 10월 21~24일, 2차 지필은 12월 19~24일 입니다.', 'other-message'), 500);
     } else if (messageText.toLowerCase() === '고마워!') {
-        setTimeout(() => sendMessage('별말씀을!', 'other-message'), 500);
-    }
+        setTimeout(() => sendMessage('천만해요!', 'other-message'), 500);
+    }  else if (messageText.toLowerCase() === '고마워!') {
+        setTimeout(() => sendMessage('천만해요!', 'other-message'), 500);
+    } 
 }
 
 // 이미지 업로드 처리 함수
@@ -54,7 +63,7 @@ function handleImageUpload() {
                 const messageContainer = document.createElement('div');
                 messageContainer.appendChild(responseImageElement);
                 const messageText = document.createElement('p');
-                messageText.textContent = '여기 만들었어!';
+                messageText.textContent = '여기 만들었습니다!';
                 messageContainer.appendChild(messageText);
 
                 sendMessage(messageContainer, 'other-message');
