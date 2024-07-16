@@ -63,7 +63,18 @@ function handleAutoReply(messageText) {
             sendMessage(messageContainer, 'other-message');
         }, 1000);
          
-    } else if (messageText.toLowerCase() === '공부 잘하는 방법 알려줘') {
+    
+    } else if (messageText.toLowerCase() === '넌 누구야?') {
+        setTimeout(() => sendMessage('전 당신의 교육 향상을 위한 인공지능 WithAI입니다.', 'other-message'), 500);
+    }
+    else if (messageText.toLowerCase() === '오늘 무슨날이야?') {
+        setTimeout(() => sendMessage('오늘은 7월 17일 수요일, 제헌절입니다.', 'other-message'), 500);
+    }
+    else if (messageText.toLowerCase() === '정보') {
+        setTimeout(() => sendMessage('개발자 : MS-DEV', 'other-message'), 500);
+        setTimeout(() => sendMessage('서비스 시작일 : 2024.07.17 입니다.', 'other-message'), 500);
+    }
+    else if (messageText.toLowerCase() === '공부 잘하는 방법 알려줘') {
         setTimeout(() => sendMessage('공부를 잘하는 방법은 다음과 같습니다', 'other-message'), 500);
         setTimeout(() => sendMessage('최선을 다해서 공부에 임하는 것입니다.', 'other-message'), 500);
     } else if (messageText.toLowerCase() === '덕영고등학교 시험 일정 알려줘') {
@@ -73,7 +84,9 @@ function handleAutoReply(messageText) {
         setTimeout(() => sendMessage('천만해요!', 'other-message'), 500);
     }  else if (messageText.toLowerCase() === '고마워!') {
         setTimeout(() => sendMessage('천만해요!', 'other-message'), 500);
-    } 
+    } else {
+        setTimeout(() => sendMessage('WithAI에 등록되지 않은 정보이거나, 알 수 없는 자료입니다.', 'other-message'), 500);
+    }
 }
 
 // 이미지 업로드 처리 함수
