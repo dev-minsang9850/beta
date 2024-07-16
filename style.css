@@ -1,0 +1,65 @@
+#chat-container {
+    width: 400px;
+    height: 500px;
+    border: 1px solid #ccc;
+    margin: 20px auto;
+}
+
+#chat-messages {
+    height: 450px;
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.my-message {
+    background-color: #dcf8c6;
+    text-align: right;
+}
+
+.other-message {
+    background-color: #dcf8c6;
+    text-align: left;
+}
+
+.message img {
+    max-width: 300px;
+    margin-bottom: 5px;
+}
+
+#input-area {
+    display: flex;
+    padding: 10px;
+}
+
+#message-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+#send-button, #upload-button {
+    padding: 8px 15px;
+    background-color: #0084ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+main{
+    display: grid; /* 컨테이너를 grid로 설정 */
+    grid-template-columns: 1fr 1fr; /* 두 개의 동일한 너비 열 생성 */
+}
+
+.chatleft{
+    grid-column: 1; /* 첫 번째 요소를 첫 번째 열에 배치 */
+}
+
+.chatlight{
+    grid-column: 2; /* 두 번째 요소를 첫 번째 열에 배치 */
+}

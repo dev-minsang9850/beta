@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Iframe 카카오톡 스타일 예시</title>
-    <style>
-        .kakao-chat-container {
-            width: 400px; /* 원하는 너비로 조절 */
-            height: 600px; /* 원하는 높이로 조절 */
-            border: 1px solid #d1d1d1; /* 채팅창 테두리 */
-            border-radius: 5px; /* 둥근 모서리 */
-            overflow: hidden; /* iframe 내용이 넘칠 경우 숨김 */
-        }
-
-        .kakao-chat-header {
-            background-color: #f6f6f6;
-            padding: 10px;
-            border-bottom: 1px solid #d1d1d1;
-            font-weight: bold;
-        }
-
-        iframe {
-            width: 100%;
-            height: calc(100% - 31px); /* 헤더 높이 제외 */
-            border: none;
-        }
-    </style>
+    <title>Welcome to WithAI!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="kakao-chat-container">
-        <div class="kakao-chat-header">
-            카카오톡 채팅
+    <main>
+        <div class="chatleft">
+            <h1>Conversations</h1>
+            <div class="chatall">
+                <h2 class="a">
+                    <img src="user.png" alt="이미지 설명" />
+                    수학 시험문제 생성</h2>
+                <h2 class="2">
+                    <img src="user.png" alt="이미지 설명" />
+                    영어 교과서 단어장 생성</h2>
+                <h2 class="3">
+                    <img src="user.png" alt="이미지 설명" />
+                    공부 잘하는 방법</h2>
+                <h2 class="4">
+                    <img src="user.png" alt="이미지 설명" />
+                    덕영고등학교 시험 일정</h2>
+            </div>
         </div>
-        <iframe src="https://gemini.google.com/app" title="외부 웹 페이지"></iframe>
-    </div>
+        <div class="chatright">
+            <h1>Welcome to WithAI!</h1>
+            <div id="chat-container">
+                <div id="chat-messages"></div>
+        
+                <div id="input-area">
+                    <input type="text" id="message-input" placeholder="메시지를 입력하세요">
+                    <button id="send-button">전송</button>
+                    <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                    <button id="upload-button">이미지 업로드</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
