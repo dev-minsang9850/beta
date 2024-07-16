@@ -1,62 +1,65 @@
-const chatbox = document.getElementById('chatbox');
+const chatMessages = document.getElementById('chat-messages');
+const userInputForm = document.getElementById('user-input-form');
 const userInput = document.getElementById('user-input');
-const sendButton = document.getElementById('send-button');
 
-// Google Cloud 프로젝트 정보 및 API 키
-const projectId = 'Generative Language Client'; // Google Cloud 프로젝트 ID
-const apiKey = 'AIzaSyApHZ-y-sIzhhRmPjTrM4op8oOuxqDFm_g';     // Google AI API 키
+// 폼 제출 이벤트 처리
+userInputForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); // 페이지 새로고침 방지
+    const message = userInput.value.trim();
 
-// Gemini 모델 초기화
-async function initializeModel() {
-    const client = new GenerativeLanguage.DiscussServiceClient({
-        projectId: projectId,
-        apiKey: apiKey,
-    });
-    return client;
-}
-
-// Gemini API 호출 함수
-async function getGeminiResponse(client, message) {
-    try {
-        const response = await client.generateMessage({
-            model: 'models/chat-bison-001',
-            prompt: {
-                context: "You are a helpful assistant.", // 챗봇 역할 설정
-                messages: [{ content: message }],
-            },
-            temperature: 0.5, // 창의성 조절 (0 ~ 1)
-            candidateCount: 1, // 생성할 답변 개수
-        });
-
-        return response[0].candidates[0].content; // 답변 내용 반환
-    } catch (error) {
-        console.error('Gemini API Error:', error);
-        return "죄송합니다. 현재 Gemini AI가 응답할 수 없습니다.";
-    }
-}
-
-// 메시지 전송 및 응답 처리
-sendButton.addEventListener('click', async () => {
-    const userMessage = userInput.value.trim();
-    if (userMessage !== '') {
-        appendMessage('user', userMessage);
-        userInput.value = '';
+    if (message !== '') {
+        appendMessage('user', message); // 사용자 메시지 화면에 추가
+        userInput.value = ''; // 입력창 초기화
+        userInput.disabled = true; // 입력창 비활성화 (로딩 표시)
 
         try {
-            const client = await initializeModel();
-            const response = await getGeminiResponse(client, userMessage);
-            appendMessage('assistant', response);
+            const response = await sendMessageToAPI(message); // API 호출 (비동기)
+            appendMessage('bot', response); // 챗봇 응답 화면에 추가
         } catch (error) {
-            console.error(error);
-            appendMessage('assistant', "죄송합니다. 현재 Gemini AI가 응답할 수 없습니다.");
+            console.error('API 호출 에러:', error);
+            appendMessage('bot', '죄송합니다. 현재 답변을 드릴 수 없습니다.');
+        } finally {
+            userInput.disabled = false; // 입력창 다시 활성화
+            userInput.focus(); // 입력창에 포커스
         }
     }
 });
 
-// 메시지 추가 함수 (이전 예시와 동일)
+// 메시지 화면에 추가 함수
 function appendMessage(sender, message) {
-    // ...
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', sender);
+
+    const senderElement = document.createElement('div'); // 발신자 표시
+    senderElement.classList.add('sender');
+    senderElement.textContent = sender === 'user' ? '나' : '챗봇';
+    messageElement.appendChild(senderElement);
+
+    const textElement = document.createElement('div'); // 메시지 내용
+    textElement.classList.add('text');
+    textElement.textContent = message;
+    messageElement.appendChild(textElement);
+
+    chatMessages.appendChild(messageElement); // 메시지 추가
+    chatMessages.scrollTop = chatMessages.scrollHeight; // 스크롤 맨 아래로
 }
 
-// 초기 메시지 (선택 사항)
-appendMessage('assistant', "안녕하세요! Gemini 학습 도우미입니다. 무엇을 도와드릴까요?");
+// Google AI API 호출 함수 (예시 - Vertex AI)
+async function sendMessageToAPI(message) {
+    const API_KEY = 'AIzaSyBU-4KIGGx9TiPkIyKU8jk0to4MCUTtl4Y'; // Google Cloud API 키
+    const API_URL = 'https://dialogflow.googleapis.com'; // Vertex AI 엔드포인트 URL
+
+    const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${API_KEY}`
+        },
+        body: JSON.stringify({
+            'instances': [{'content': message}] // Vertex AI 요청 형식
+        })
+    });
+
+    const data = await response.json();
+    return data.predictions[0].content; // Vertex AI 응답 형식
+}
