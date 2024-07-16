@@ -30,7 +30,39 @@ function handleAutoReply(messageText) {
             sendMessage('알겠습니다! 저에게 파일을 보내주세요!', 'other-message');
             uploadButton.style.display = 'block';
         }, 500);
-        
+    }
+        else if (messageText.toLowerCase() === '수학 시험문제 만들어줘') {
+            setTimeout(() => sendMessage('알겠습니다!', 'other-message'), 500);
+            setTimeout(() => {
+                const responseImageElement = document.createElement('img');
+                responseImageElement.src = 'response_image.png'; // 응답 이미지 파일 경로
+                responseImageElement.style.maxWidth = '300px';
+
+                const messageContainer = document.createElement('div');
+                messageContainer.appendChild(responseImageElement);
+                const messageText = document.createElement('p');
+                messageText.textContent = '여기 만들었습니다!';
+                messageContainer.appendChild(messageText);
+
+                sendMessage(messageContainer, 'other-message');
+            }, 1000);
+    
+    } else if (messageText.toLowerCase() === '영어 교과서 단어장 만들어줘') {
+        setTimeout(() => sendMessage('알겠습니다!', 'other-message'), 500);
+        setTimeout(() => {
+            const responseImageElement = document.createElement('img');
+            responseImageElement.src = 'response_image.png'; // 응답 이미지 파일 경로
+            responseImageElement.style.maxWidth = '300px';
+
+            const messageContainer = document.createElement('div');
+            messageContainer.appendChild(responseImageElement);
+            const messageText = document.createElement('p');
+            messageText.textContent = '여기 만들었습니다!';
+            messageContainer.appendChild(messageText);
+
+            sendMessage(messageContainer, 'other-message');
+        }, 1000);
+         
     } else if (messageText.toLowerCase() === '공부 잘하는 방법 알려줘') {
         setTimeout(() => sendMessage('공부를 잘하는 방법은 다음과 같습니다', 'other-message'), 500);
         setTimeout(() => sendMessage('최선을 다해서 공부에 임하는 것입니다.', 'other-message'), 500);
